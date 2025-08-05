@@ -1,0 +1,6 @@
+{
+  "name": "AI Tic Tac Toe",
+  "description": "A classic Tic Tac Toe game where you can test your skills against a powerful AI opponent powered by the Gemini API. The AI analyzes the board to make strategic moves, providing a challenging and engaging experience.",
+  "requestFramePermissions": [],
+  "prompt": ""
+}

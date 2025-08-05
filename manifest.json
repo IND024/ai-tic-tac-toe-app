@@ -1,0 +1,9 @@
+{
+  "short_name": "AI TicTacToe",
+  "name": "AI Tic Tac Toe",
+  "start_url": ".",
+  "display": "standalone",
+  "theme_color": "#111827",
+  "background_color": "#111827",
+  "description": "A classic Tic Tac Toe game with an AI opponent. Works offline."
+}
