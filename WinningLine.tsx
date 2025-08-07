@@ -1,5 +1,7 @@
+
 import React, { useEffect, useRef, useState } from 'react';
-import { Winner } from '../types';
+import type { FC } from 'react';
+import type { Winner } from '../types';
 
 interface WinningLineProps {
   winnerInfo: Winner;
@@ -13,7 +15,7 @@ const getCoords = (index: number): { x: number; y: number } => {
     return { x, y };
 };
 
-const WinningLine: React.FC<WinningLineProps> = ({ winnerInfo }) => {
+const WinningLine: FC<WinningLineProps> = ({ winnerInfo }) => {
     const lineRef = useRef<SVGLineElement>(null);
     const [shouldAnimate, setShouldAnimate] = useState(false);
 
