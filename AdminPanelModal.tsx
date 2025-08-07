@@ -1,9 +1,10 @@
 
 import React, { useState, useEffect, useRef } from 'react';
+import type { FC } from 'react';
 import * as db from '../services/dbService';
 import { sounds as defaultSounds } from '../services/soundData';
 import { playSound } from '../services/soundService';
-import { PlayerSymbols, PlayerSymbol } from '../types';
+import type { PlayerSymbols, PlayerSymbol } from '../types';
 
 interface AdminPanelModalProps {
   onClose: () => void;
@@ -31,7 +32,7 @@ const DEFAULT_PLAYER_SYMBOLS: PlayerSymbols = {
     P2: { type: 'text', value: 'O' } 
 };
 
-const AdminPanelModal: React.FC<AdminPanelModalProps> = ({ onClose }) => {
+const AdminPanelModal: FC<AdminPanelModalProps> = ({ onClose }) => {
   const [activeView, setActiveView] = useState<'main' | 'symbols' | 'sounds'>('main');
   const [soundSettings, setSoundSettings] = useState<SoundInfo[]>([]);
   const [areSoundsLocked, setAreSoundsLocked] = useState(false);
@@ -253,7 +254,7 @@ const AdminPanelModal: React.FC<AdminPanelModalProps> = ({ onClose }) => {
     }
   };
 
-  const SymbolInput: React.FC<{ player: 'P1' | 'P2' }> = ({ player }) => {
+  const SymbolInput: FC<{ player: 'P1' | 'P2' }> = ({ player }) => {
       const symbol = playerSymbols[player];
       const colorClass = player === 'P1' ? 'cyan' : 'amber';
       const inputRef = player === 'P1' ? p1ImageInputRef : p2ImageInputRef;
@@ -307,7 +308,7 @@ const AdminPanelModal: React.FC<AdminPanelModalProps> = ({ onClose }) => {
       </div>
   );
 
-  const DetailViewContainer: React.FC<{ children: React.ReactNode }> = ({ children }) => (
+  const DetailViewContainer: FC<{ children: React.ReactNode }> = ({ children }) => (
     <div className="p-6">
       <button
           onClick={() => { playSound('button'); setActiveView('main'); }}
