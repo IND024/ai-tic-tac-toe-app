@@ -2,7 +2,7 @@
 
 
 
-const CACHE_NAME = 'ai-tic-tac-toe-v7'; // Bumped cache version
+const CACHE_NAME = 'ai-tic-tac-toe-v8'; // Bumped cache version
 const URLS_TO_CACHE = [
   './',
   './index.html',
@@ -43,7 +43,8 @@ const URLS_TO_CACHE = [
   './sounds/notification.mp3',
   './sounds/hint.mp3',
   'https://cdn.tailwindcss.com',
-  'https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&display=swap'
+  'https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&display=swap',
+  'https://unpkg.com/@babel/standalone/babel.min.js' // Added Babel for offline support
 ];
 
 // On install, cache the core assets.
