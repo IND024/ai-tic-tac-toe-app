@@ -1,5 +1,5 @@
 
-import React from 'react';
+import type React from 'react';
 
 export type Player = 'P1' | 'P2';
 export type SquareValue = Player | null;
