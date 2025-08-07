@@ -1,13 +1,14 @@
 
 import React from 'react';
-import { Scores } from '../types';
+import type { FC } from 'react';
+import type { Scores } from '../types';
 
 interface ScoreboardProps {
     scores: Scores;
     gameMode: 'ai' | 'twoPlayer' | null;
 }
 
-const Scoreboard: React.FC<ScoreboardProps> = ({ scores, gameMode }) => {
+const Scoreboard: FC<ScoreboardProps> = ({ scores, gameMode }) => {
     const p1Label = gameMode === 'twoPlayer' ? 'P1 Wins' : 'Wins';
     const p2Label = gameMode === 'twoPlayer' ? 'P2 Wins' : 'Losses';
     
