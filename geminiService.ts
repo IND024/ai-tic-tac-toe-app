@@ -5,9 +5,9 @@ import type { BoardState, Player, Difficulty } from "../types";
 
 // IMPORTANT: Replace this with your actual Gemini API Key
 // The use of process.env.API_KEY does not work in a browser-only environment like GitHub Pages.
-const API_KEY = 'YOUR_GEMINI_API_KEY_HERE';
+const API_KEY = 'AIzaSyC4AMDc8z8UAYr84z1mci-OK0jyZKzgdbc';
 
-if (API_KEY === 'YOUR_GEMINI_API_KEY_HERE') {
+if (API_KEY === 'AIzaSyC4AMDc8z8UAYr84z1mci-OK0jyZKzgdbc') {
   console.warn("API Key is not set. Please replace 'YOUR_GEMINI_API_KEY_HERE' in services/geminiService.ts with your actual Gemini API key.");
 }
 
@@ -211,7 +211,7 @@ const handleApiError = (error: unknown, context: 'AI move' | 'hint') => {
 
 export const getAIMove = async (board: BoardState, difficulty: Difficulty): Promise<number> => {
   // Check if API key is missing
-  if (API_KEY === 'YOUR_GEMINI_API_KEY_HERE') {
+  if (API_KEY === 'AIzaSyC4AMDc8z8UAYr84z1mci-OK0jyZKzgdbc') {
     console.error("Gemini API key is not set. Using offline AI.");
     return getOfflineAIMove(board, difficulty);
   }
@@ -290,7 +290,7 @@ export const getAIMove = async (board: BoardState, difficulty: Difficulty): Prom
 
 export const getHint = async (board: BoardState): Promise<number> => {
     // Check if API key is missing
-    if (API_KEY === 'YOUR_GEMINI_API_KEY_HERE') {
+    if (API_KEY === 'AIzaSyC4AMDc8z8UAYr84z1mci-OK0jyZKzgdbc') {
         console.error("Gemini API key is not set. Using offline logic for hint.");
         return getOfflineHintMove(board);
     }
