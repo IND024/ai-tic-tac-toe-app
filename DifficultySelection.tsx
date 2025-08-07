@@ -1,6 +1,7 @@
 
 import React from 'react';
-import { Difficulty } from '../types';
+import type { FC } from 'react';
+import type { Difficulty } from '../types';
 import { playSound } from '../services/soundService';
 
 interface DifficultySelectionProps {
@@ -8,7 +9,7 @@ interface DifficultySelectionProps {
   onBack: () => void;
 }
 
-const DifficultySelection: React.FC<DifficultySelectionProps> = ({ onSelectDifficulty, onBack }) => {
+const DifficultySelection: FC<DifficultySelectionProps> = ({ onSelectDifficulty, onBack }) => {
   const difficulties: { name: Difficulty, color: string, description: string }[] = [
     { name: 'easy', color: 'bg-green-600 hover:bg-green-500 focus:ring-green-400', description: 'Beginner AI. Makes random valid moves.' },
     { name: 'medium', color: 'bg-yellow-600 hover:bg-yellow-500 focus:ring-yellow-400', description: 'A balanced AI. It will try to win and block you, making smart but not perfect moves.' },
