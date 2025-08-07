@@ -1,6 +1,7 @@
 
 import React, { useState, useEffect, useCallback, useRef } from 'react';
-import { BoardState, Player, Winner, Difficulty, Scores, PlayerSymbols, Statistics, Achievement } from './types';
+import type { FC } from 'react';
+import type { BoardState, Player, Winner, Difficulty, Scores, PlayerSymbols, Statistics, Achievement } from './types';
 import { getAIMove, getHint } from './services/geminiService';
 import { playSound, getMuteState, toggleMuteState } from './services/soundService';
 import * as statisticsService from './services/statisticsService';
@@ -37,7 +38,7 @@ const DEFAULT_PLAYER_SYMBOLS: PlayerSymbols = {
 type GameMode = 'ai' | 'twoPlayer';
 type GameViewState = 'loading' | 'modeSelection' | 'difficultySelection' | 'levelSelection' | 'playing' | 'profile';
 
-const App: React.FC = () => {
+const App: FC = () => {
     const [viewState, setViewState] = useState<GameViewState>('loading');
     const [previousViewState, setPreviousViewState] = useState<GameViewState>('loading');
     const [gameMode, setGameMode] = useState<GameMode | null>(null);
