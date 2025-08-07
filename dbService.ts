@@ -1,4 +1,6 @@
-import { openDB, IDBPDatabase } from 'idb';
+
+import { openDB } from 'idb';
+import type { IDBPDatabase } from 'idb';
 
 const DB_NAME = 'ai-tic-tac-toe-sounds';
 const DB_VERSION = 1;
