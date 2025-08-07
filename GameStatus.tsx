@@ -1,7 +1,7 @@
 
-
 import React from 'react';
-import { Player, Winner, PlayerSymbols, PlayerSymbol } from '../types';
+import type { FC } from 'react';
+import type { Player, Winner, PlayerSymbols, PlayerSymbol } from '../types';
 
 interface GameStatusProps {
     winnerInfo: Winner;
@@ -11,7 +11,7 @@ interface GameStatusProps {
     playerSymbols: PlayerSymbols;
 }
 
-const SymbolDisplay: React.FC<{ player: Player; symbol: PlayerSymbol; large?: boolean }> = ({ player, symbol, large = false }) => {
+const SymbolDisplay: FC<{ player: Player; symbol: PlayerSymbol; large?: boolean }> = ({ player, symbol, large = false }) => {
   const colorClass = player === 'P1' ? 'text-cyan-400' : 'text-amber-400';
   // Increased size for image symbols to make them more visible.
   const sizeClass = large ? 'w-16 h-16' : 'w-12 h-12';
@@ -23,7 +23,7 @@ const SymbolDisplay: React.FC<{ player: Player; symbol: PlayerSymbol; large?: bo
   return <span className={`${colorClass} font-bold ${large ? 'text-6xl' : 'text-4xl'} mx-1`}>{symbol.value}</span>;
 };
 
-const GameStatus: React.FC<GameStatusProps> = ({ winnerInfo, isDraw, turn, isAiThinking, playerSymbols }) => {
+const GameStatus: FC<GameStatusProps> = ({ winnerInfo, isDraw, turn, isAiThinking, playerSymbols }) => {
     let message;
     if (winnerInfo) {
         const winnerSymbol = playerSymbols[winnerInfo.player];
