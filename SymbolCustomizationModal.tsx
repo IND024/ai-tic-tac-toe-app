@@ -1,6 +1,7 @@
 
 import React, { useState, useEffect, useRef } from 'react';
-import { PlayerSymbols } from '../types';
+import type { FC } from 'react';
+import type { PlayerSymbols } from '../types';
 import { playSound } from '../services/soundService';
 
 interface SymbolCustomizationModalProps {
@@ -12,7 +13,7 @@ const DEFAULT_PLAYER_SYMBOLS: PlayerSymbols = {
     P2: { type: 'text', value: 'O' } 
 };
 
-const SymbolCustomizationModal: React.FC<SymbolCustomizationModalProps> = ({ onClose }) => {
+const SymbolCustomizationModal: FC<SymbolCustomizationModalProps> = ({ onClose }) => {
   const [playerSymbols, setPlayerSymbols] = useState<PlayerSymbols>(DEFAULT_PLAYER_SYMBOLS);
   const [areSymbolsLocked, setAreSymbolsLocked] = useState(false);
   const [symbolError, setSymbolError] = useState('');
@@ -134,7 +135,7 @@ const SymbolCustomizationModal: React.FC<SymbolCustomizationModalProps> = ({ onC
     }
   };
   
-  const SymbolInput: React.FC<{ player: 'P1' | 'P2' }> = ({ player }) => {
+  const SymbolInput: FC<{ player: 'P1' | 'P2' }> = ({ player }) => {
       const symbol = playerSymbols[player];
       const colorClass = player === 'P1' ? 'cyan' : 'amber';
       const inputRef = player === 'P1' ? p1ImageInputRef : p2ImageInputRef;
