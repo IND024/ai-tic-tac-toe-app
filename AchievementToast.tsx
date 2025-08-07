@@ -1,13 +1,14 @@
 
 import React, { useEffect } from 'react';
-import { Achievement } from '../types';
+import type { FC } from 'react';
+import type { Achievement } from '../types';
 
 interface AchievementToastProps {
   achievement: Achievement;
   onComplete: () => void;
 }
 
-const AchievementToast: React.FC<AchievementToastProps> = ({ achievement, onComplete }) => {
+const AchievementToast: FC<AchievementToastProps> = ({ achievement, onComplete }) => {
   useEffect(() => {
     const timer = setTimeout(() => {
       onComplete();
