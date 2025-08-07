@@ -3,20 +3,28 @@ import { GoogleGenAI, Type } from "@google/genai";
 import type { GenerateContentResponse } from "@google/genai";
 import type { BoardState, Player, Difficulty } from "../types";
 
-// IMPORTANT: Replace this with your actual Gemini API Key
-// The use of process.env.API_KEY does not work in a browser-only environment like GitHub Pages.
-const API_KEY = 'AIzaSyC4AMDc8z8UAYr84z1mci-OK0jyZKzgdbc';
+// IMPORTANT: Add your Gemini API Key here to enable the AI opponent.
+// You can get a key from Google AI Studio.
+const API_KEY = ''; // <-- PASTE YOUR GEMINI API KEY HERE
 
-if (API_KEY === 'AIzaSyC4AMDc8z8UAYr84z1mci-OK0jyZKzgdbc') {
-  console.warn("API Key is not set. Please replace 'YOUR_GEMINI_API_KEY_HERE' in services/geminiService.ts with your actual Gemini API key.");
+// --- Gemini AI Client Initialization ---
+let ai: GoogleGenAI | null = null;
+if (API_KEY) {
+  try {
+    ai = new GoogleGenAI({ apiKey: API_KEY });
+  } catch (error) {
+    console.error("Failed to initialize Gemini AI. Please check your API key.", error);
+    ai = null;
+  }
+} else {
+  // This message is for developers, it's okay to keep in the console.
+  console.warn("Gemini API key is not set. The app will use the offline AI opponent. To enable the full AI experience, obtain a key from Google AI Studio and place it in `services/geminiService.ts`.");
 }
 
-const ai = new GoogleGenAI({ apiKey: API_KEY });
-
 // --- API Call Management ---
-const API_TIMEOUT_MS = 10000; // Increased timeout to 10 seconds
+const API_TIMEOUT_MS = 10000;
 let rateLimitCooldownUntil = 0;
-const RATE_LIMIT_COOLDOWN_MS = 60 * 1000; // 1 minute cooldown
+const RATE_LIMIT_COOLDOWN_MS = 60 * 1000;
 
 const getDifficultyInstructions = (difficulty: Difficulty): string => {
     switch (difficulty) {
@@ -210,12 +218,12 @@ const handleApiError = (error: unknown, context: 'AI move' | 'hint') => {
 
 
 export const getAIMove = async (board: BoardState, difficulty: Difficulty): Promise<number> => {
-  // Check if API key is missing
-  if (API_KEY === 'AIzaSyC4AMDc8z8UAYr84z1mci-OK0jyZKzgdbc') {
-    console.error("Gemini API key is not set. Using offline AI.");
+  // Check if Gemini AI is available and online
+  if (!ai) {
+    // A console.error is not needed here as the initial warning is sufficient.
+    // Repeating it on every move would be noisy.
     return getOfflineAIMove(board, difficulty);
   }
-  // Check for active cooldown or offline status first
   if (Date.now() < rateLimitCooldownUntil) {
     console.warn("API is on cooldown due to rate limiting. Using offline AI.");
     return getOfflineAIMove(board, difficulty);
@@ -289,12 +297,11 @@ export const getAIMove = async (board: BoardState, difficulty: Difficulty): Prom
 };
 
 export const getHint = async (board: BoardState): Promise<number> => {
-    // Check if API key is missing
-    if (API_KEY === 'AIzaSyC4AMDc8z8UAYr84z1mci-OK0jyZKzgdbc') {
-        console.error("Gemini API key is not set. Using offline logic for hint.");
+    // Check if Gemini AI is available and online
+    if (!ai) {
+        // No console.error here either for the same reason.
         return getOfflineHintMove(board);
     }
-    // Check for active cooldown or offline status first
     if (Date.now() < rateLimitCooldownUntil) {
         console.warn("API is on cooldown due to rate limiting. Using offline logic for hint.");
         return getOfflineHintMove(board);
