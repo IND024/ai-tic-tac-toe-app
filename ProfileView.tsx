@@ -1,6 +1,7 @@
 
 import React, { useState } from 'react';
-import { Statistics, Achievement } from '../types';
+import type { FC } from 'react';
+import type { Statistics, Achievement } from '../types';
 import StatisticsView from './StatisticsView';
 import AchievementsView from './AchievementsView';
 import { ALL_ACHIEVEMENTS } from '../services/achievementsService';
@@ -13,10 +14,10 @@ interface ProfileViewProps {
 
 type ActiveTab = 'stats' | 'achievements';
 
-const ProfileView: React.FC<ProfileViewProps> = ({ stats, unlockedAchievements, onBack }) => {
+const ProfileView: FC<ProfileViewProps> = ({ stats, unlockedAchievements, onBack }) => {
   const [activeTab, setActiveTab] = useState<ActiveTab>('stats');
 
-  const TabButton: React.FC<{ tabId: ActiveTab; children: React.ReactNode }> = ({ tabId, children }) => (
+  const TabButton: FC<{ tabId: ActiveTab; children: React.ReactNode }> = ({ tabId, children }) => (
     <button
       onClick={() => setActiveTab(tabId)}
       className={`px-6 py-3 text-xl font-bold rounded-t-lg transition-colors duration-200 focus:outline-none w-1/2 ${
