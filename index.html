@@ -8,6 +8,8 @@
     <meta name="theme-color" content="#111827">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&display=swap">
     <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Babel for in-browser JSX/TSX transpilation -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
     <style>
         body {
             font-family: 'Inter', sans-serif;
@@ -63,6 +65,7 @@
       }
     }
     </script>
-    <script type="module" src="./index.tsx"></script>
+    <!-- Use type="text/babel" to engage the Babel transpiler -->
+    <script type="text/babel" data-type="module" src="./index.tsx"></script>
 </body>
 </html>
