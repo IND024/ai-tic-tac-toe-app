@@ -1,11 +1,12 @@
 
 import React from 'react';
-import { Achievement, Statistics, Difficulty } from '../types';
+import type { FC } from 'react';
+import type { Achievement, Statistics, Difficulty } from '../types';
 
 const UNLOCKED_ACHIEVEMENTS_KEY = 'unlockedTicTacToeAchievements';
 
 // Helper for icon styling
-const IconWrapper: React.FC<{ isUnlocked: boolean, children: React.ReactNode, className?: string }> = ({ isUnlocked, children, className }) => (
+const IconWrapper: FC<{ isUnlocked: boolean, children: React.ReactNode, className?: string }> = ({ isUnlocked, children, className }) => (
     React.createElement("div", {
         className: `w-full h-full rounded-full flex items-center justify-center transition-all duration-300 ${isUnlocked ? 'bg-yellow-400 text-gray-900' : 'bg-gray-700 text-gray-500'} ${className || ''}`
     }, children)
