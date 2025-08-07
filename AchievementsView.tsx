@@ -1,6 +1,7 @@
 
 import React from 'react';
-import { Achievement } from '../types';
+import type { FC } from 'react';
+import type { Achievement } from '../types';
 
 interface AchievementsViewProps {
   allAchievements: Achievement[];
@@ -8,7 +9,7 @@ interface AchievementsViewProps {
 }
 
 // Sub-component for rendering a single achievement item to reduce repetition.
-const AchievementItem: React.FC<{ achievement: Achievement; isUnlocked: boolean }> = ({ achievement, isUnlocked }) => (
+const AchievementItem: FC<{ achievement: Achievement; isUnlocked: boolean }> = ({ achievement, isUnlocked }) => (
     <div key={achievement.id} className="group relative flex flex-col items-center gap-2">
         <div className={`w-24 h-24 transition-all duration-300 ${!isUnlocked ? 'grayscale opacity-70' : ''}`}>
             {achievement.icon(isUnlocked)}
@@ -28,14 +29,14 @@ const AchievementItem: React.FC<{ achievement: Achievement; isUnlocked: boolean 
 );
 
 
-const AchievementsView: React.FC<AchievementsViewProps> = ({ allAchievements, unlockedIds }) => {
+const AchievementsView: FC<AchievementsViewProps> = ({ allAchievements, unlockedIds }) => {
   const unlockedCount = unlockedIds.size;
   const totalCount = allAchievements.length;
   
   const unlockedList = allAchievements.filter(ach => unlockedIds.has(ach.id));
   const lockedList = allAchievements.filter(ach => !unlockedIds.has(ach.id));
 
-  const SectionHeader: React.FC<{ title: string }> = ({ title }) => (
+  const SectionHeader: FC<{ title: string }> = ({ title }) => (
       <div className="flex justify-between items-center mb-4">
           <h4 className="text-xl font-bold text-gray-300">{title}</h4>
       </div>
