@@ -1,6 +1,7 @@
 
 import React from 'react';
-import { Player, PlayerSymbol } from '../types';
+import type { FC } from 'react';
+import type { Player, PlayerSymbol } from '../types';
 
 interface SquareProps {
   player: Player | null;
@@ -11,7 +12,7 @@ interface SquareProps {
   isHint: boolean;
 }
 
-const Square: React.FC<SquareProps> = ({ player, symbol, onClick, isWinning, disabled, isHint }) => {
+const Square: FC<SquareProps> = ({ player, symbol, onClick, isWinning, disabled, isHint }) => {
   const baseStyle = "flex items-center justify-center w-24 h-24 md:w-32 md:h-32 rounded-lg transition-all duration-300 ease-in-out transform hover:scale-105";
   const bgStyle = isWinning ? "bg-green-500" : "bg-gray-800 hover:bg-gray-700";
   
@@ -46,4 +47,4 @@ const Square: React.FC<SquareProps> = ({ player, symbol, onClick, isWinning, dis
   );
 };
 
-export default Square;
+export default Square;11
