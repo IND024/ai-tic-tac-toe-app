@@ -1,5 +1,7 @@
+
 import React from 'react';
-import { BoardState, Winner, PlayerSymbols } from '../types';
+import type { FC } from 'react';
+import type { BoardState, Winner, PlayerSymbols } from '../types';
 import Square from './Square';
 import WinningLine from './WinningLine';
 
@@ -12,7 +14,7 @@ interface BoardProps {
   playerSymbols: PlayerSymbols;
 }
 
-const Board: React.FC<BoardProps> = ({ board, onSquareClick, winnerInfo, isAiThinking, hintedSquare, playerSymbols }) => {
+const Board: FC<BoardProps> = ({ board, onSquareClick, winnerInfo, isAiThinking, hintedSquare, playerSymbols }) => {
   return (
     <div className="relative grid grid-cols-3 gap-3 p-3 bg-gray-900/50 rounded-xl shadow-2xl">
       {board.map((player, index) => {
