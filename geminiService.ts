@@ -2,10 +2,12 @@
 import { GoogleGenAI, Type, GenerateContentResponse } from "@google/genai";
 import { BoardState, Player, Difficulty } from "../types";
 
-const API_KEY = process.env.API_KEY;
+// IMPORTANT: Replace this with your actual Gemini API Key
+// The use of process.env.API_KEY does not work in a browser-only environment like GitHub Pages.
+const API_KEY = 'YOUR_GEMINI_API_KEY_HERE';
 
-if (!API_KEY) {
-  throw new Error("API_KEY environment variable not set");
+if (API_KEY === 'YOUR_GEMINI_API_KEY_HERE') {
+  console.warn("API Key is not set. Please replace 'YOUR_GEMINI_API_KEY_HERE' in services/geminiService.ts with your actual Gemini API key.");
 }
 
 const ai = new GoogleGenAI({ apiKey: API_KEY });
@@ -207,6 +209,11 @@ const handleApiError = (error: unknown, context: 'AI move' | 'hint') => {
 
 
 export const getAIMove = async (board: BoardState, difficulty: Difficulty): Promise<number> => {
+  // Check if API key is missing
+  if (API_KEY === 'YOUR_GEMINI_API_KEY_HERE') {
+    console.error("Gemini API key is not set. Using offline AI.");
+    return getOfflineAIMove(board, difficulty);
+  }
   // Check for active cooldown or offline status first
   if (Date.now() < rateLimitCooldownUntil) {
     console.warn("API is on cooldown due to rate limiting. Using offline AI.");
@@ -281,6 +288,11 @@ export const getAIMove = async (board: BoardState, difficulty: Difficulty): Prom
 };
 
 export const getHint = async (board: BoardState): Promise<number> => {
+    // Check if API key is missing
+    if (API_KEY === 'YOUR_GEMINI_API_KEY_HERE') {
+        console.error("Gemini API key is not set. Using offline logic for hint.");
+        return getOfflineHintMove(board);
+    }
     // Check for active cooldown or offline status first
     if (Date.now() < rateLimitCooldownUntil) {
         console.warn("API is on cooldown due to rate limiting. Using offline logic for hint.");
