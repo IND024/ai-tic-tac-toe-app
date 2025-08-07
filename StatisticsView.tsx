@@ -1,6 +1,7 @@
 
 import React from 'react';
-import { Statistics } from '../types';
+import type { FC } from 'react';
+import type { Statistics } from '../types';
 
 interface StatCardProps {
   label: string;
@@ -9,7 +10,7 @@ interface StatCardProps {
   children?: React.ReactNode;
 }
 
-const StatCard: React.FC<StatCardProps> = ({ label, value, className, children }) => (
+const StatCard: FC<StatCardProps> = ({ label, value, className, children }) => (
   <div className={`bg-gray-900/70 p-6 rounded-xl shadow-lg flex flex-col items-center justify-center text-center ${className}`}>
     <dt className="text-lg font-semibold text-gray-400 order-2">{label}</dt>
     <dd className="text-5xl font-black text-white order-1 mb-1">{value}</dd>
@@ -17,7 +18,7 @@ const StatCard: React.FC<StatCardProps> = ({ label, value, className, children }
   </div>
 );
 
-const StatisticsView: React.FC<{ stats: Statistics }> = ({ stats }) => {
+const StatisticsView: FC<{ stats: Statistics }> = ({ stats }) => {
   const winRate = stats.totalGamesPlayed > 0 ? ((stats.totalWins / (stats.totalGamesPlayed - stats.totalDraws)) * 100).toFixed(1) : 0;
   
   const difficultyWins = [
