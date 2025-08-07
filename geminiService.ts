@@ -2,12 +2,16 @@
 import { GoogleGenAI, Type, GenerateContentResponse } from "@google/genai";
 import { BoardState, Player, Difficulty } from "../types";
 
-const API_KEY = 'AIzaSyC4AMDc8z8UAYr84z1mci-OK0jyZKzgdbc'; 
+const API_KEY = process.env.API_KEY;
+
+if (!API_KEY) {
+  throw new Error("API_KEY environment variable not set");
+}
 
 const ai = new GoogleGenAI({ apiKey: API_KEY });
 
 // --- API Call Management ---
-const API_TIMEOUT_MS = 5000; // Increased timeout to 5 seconds
+const API_TIMEOUT_MS = 10000; // Increased timeout to 10 seconds
 let rateLimitCooldownUntil = 0;
 const RATE_LIMIT_COOLDOWN_MS = 60 * 1000; // 1 minute cooldown
 
